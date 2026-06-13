@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://incredible-halva-25e834.netlify.app/sitemap.xml

@@ -1,0 +1,72 @@
+# netlify.toml
+
+[build]
+  publish = "."
+
+# ----------------------------
+# 301 Permanent Redirect
+# ----------------------------
+[[redirects]]
+  from = "/old-page"
+  to = "/new-page"
+  status = 301
+
+# ----------------------------
+# 302 Temporary Redirect
+# ----------------------------
+[[redirects]]
+  from = "/maintenance"
+  to = "/coming-soon"
+  status = 302
+
+# ----------------------------
+# SPA Support (React/Vue/etc.)
+# ----------------------------
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ----------------------------
+# Custom 404
+# ----------------------------
+[[redirects]]
+  from = "/404"
+  to = "/404.html"
+  status = 404
+
+# ----------------------------
+# Security Headers
+# ----------------------------
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# ----------------------------
+# Cache CSS & JS
+# ----------------------------
+[[headers]]
+  for = "*.css"
+
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.js"
+
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# ----------------------------
+# Cache Images
+# ----------------------------
+[[headers]]
+  for = "/images/*"
+
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
